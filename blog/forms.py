@@ -1,5 +1,7 @@
 from django import forms
 from .models import Comment
+from django.contrib.postgres.search import SearchVector
+from .forms import EmailPostForm, CommentForm, SearchForm
 
 class EmailPostForm(forms.Form):
     name = forms.CharField(max_length=30)
@@ -12,3 +14,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['name', 'email', 'body']
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField()
